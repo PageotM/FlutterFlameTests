@@ -1,4 +1,5 @@
 import 'package:dddd/GameServices/gameGridService.dart';
+import 'package:dddd/gameClasses/gameConcepts/Inventory.dart';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ class PlayerComponent extends PositionComponent with KeyboardHandler {
   // Grid coordinates of the player
   Vector2 coords;
   int movementLeft = 10;
+  InventoryData inv =  defaultInventory;
 
   PlayerComponent({required this.coords, required Vector2 size})
       : super(size: size);
@@ -60,5 +62,26 @@ class PlayerComponent extends PositionComponent with KeyboardHandler {
       }
     }
     return true;
+  }
+
+  void handleSwipe(String direction) {
+    switch (direction) {
+      case "up":
+        movementLeft -= 1;
+        coords.y -= 1;
+        break;
+      case "down":
+        movementLeft -= 1;
+        coords.y += 1;
+        break;
+      case "left":
+        movementLeft -= 1;
+        coords.x -= 1;
+        break;
+      case "right":
+        movementLeft -= 1;
+        coords.x += 1;
+        break;
+    }
   }
 }
