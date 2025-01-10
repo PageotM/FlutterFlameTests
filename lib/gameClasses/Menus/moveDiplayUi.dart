@@ -1,23 +1,31 @@
 import 'package:flame/components.dart';
 import '../gameConcepts/player.dart';
 
-class MoveDiplayUI extends PositionComponent {
+class StatsDiplayUI extends PositionComponent {
   final PlayerComponent player;
-  late TextComponent textComponent;
+  late TextComponent moveTextComponent;
+  late TextComponent moneyTextComponent;
 
-  MoveDiplayUI({required this.player, required Vector2 position})
+  StatsDiplayUI({required this.player, required Vector2 position})
       : super(position: position, size: Vector2(150, 30)); // Size for MoveDisplay
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
 
-    textComponent = TextComponent(
+    moveTextComponent = TextComponent(
       text: "Moves Left: ${player.movementLeft}",
       position: Vector2.zero(), // Start at (0, 0) within MoveDisplay
     );
 
-    add(textComponent);
+    add(moveTextComponent);
+    moneyTextComponent = TextComponent(
+      text: "Money Left: ${player.money}",
+      position: Vector2(0.0,30.0), // Start at (0, 0) within MoveDisplay
+    );
+
+    add(moneyTextComponent);
+
   }
 
   @override
@@ -25,6 +33,8 @@ class MoveDiplayUI extends PositionComponent {
     super.update(dt);
 
     // Update the text with the latest movementLeft value
-    textComponent.text = "Moves Left: ${player.movementLeft}";
+    moveTextComponent.text = "Moves Left: ${player.movementLeft}";
+    moneyTextComponent.text = "Money Left: ${player.money}";
+
   }
 }

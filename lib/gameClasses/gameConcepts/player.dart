@@ -9,6 +9,7 @@ class PlayerComponent extends PositionComponent with KeyboardHandler {
   // Grid coordinates of the player
   Vector2 coords;
   int movementLeft = 10;
+  int money = 15;
   InventoryData inv =  defaultInventory;
 
   PlayerComponent({required this.coords, required Vector2 size})

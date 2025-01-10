@@ -1,13 +1,14 @@
 import 'package:dddd/gameClasses/Menus/InventoryUI.dart';
+import 'package:dddd/gameClasses/Menus/actionButton/actionButton.dart';
 import 'package:dddd/gameClasses/Menus/moveDiplayUi.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import '../gameConcepts/player.dart';
 
-class InfoBox extends PositionComponent {
+class RightMenu extends PositionComponent {
   final PlayerComponent player;
 
-  InfoBox({required this.player, required Vector2 position})
+  RightMenu({required this.player, required Vector2 position})
       : super(position: position, size: Vector2(150, 200)); // Adjusted size
 
   @override
@@ -15,7 +16,7 @@ class InfoBox extends PositionComponent {
     super.onLoad();
 
     // Add MoveDisplay
-    add(MoveDiplayUI(
+    add(StatsDiplayUI(
       player: player,
       position: Vector2(10, 10),
     ));
@@ -23,8 +24,10 @@ class InfoBox extends PositionComponent {
     // Add Inventory
     add(InventoryUI(
       inventory: player.inv,
-      position: Vector2(10, 50), // Position inventory below the MoveDisplay
+      position: Vector2(10, 80), // Position inventory below the MoveDisplay
     ));
+
+    add(TextActionButton("moncul", onTap: ()=>{print("asdas")}));
   }
 
   @override
